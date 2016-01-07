@@ -14,7 +14,7 @@ EOF
             <input type="text" class="entry-time" name="t_<mt:var name="field_name" escape="html">" value="<$mt:var name="time" escape="html"$>" />
 EOF
 }
-   
+
     $old = quotemeta($old);
     $old =~ s!(\\ )+!\\s+!g;
 
@@ -130,7 +130,7 @@ EOF
 <input class="entry-time" name="t_<mt:var name="field_name">" style="display: none; visibility: hidden;" value="<$mt:var name="time" escape="html"$>" />
 
 
-<script type="text/javascript"> 
+<script type="text/javascript">
     function assemble_date_<mt:var name="field_name">() {
        // Calculate hour, based on am/pm
        var hd_hours = document.forms['entry_form'].hd_time_hours_<mt:var name="field_name">.value;
@@ -149,7 +149,7 @@ EOF
        document.forms['entry_form'].t_<mt:var name="field_name">.value = hd_hours + ':' + document.forms['entry_form'].hd_time_min_<mt:var name="field_name">.value + ':' + '00';
     }
 
-    function hd_grab_<mt:var name="field_name">() { 
+    function hd_grab_<mt:var name="field_name">() {
         // Get the time from the authored_on_time field. Important, in case
         // the entry was already saved, we need the right time.
         var hd_now = document.forms['entry_form'].t_<mt:var name="field_name">.value;
@@ -177,7 +177,7 @@ EOF
     }
 
     hd_grab_<mt:var name="field_name">();
-</script>   
+</script>
 EOF
 
     $$tmpl_ref =~ s!$old!$new!;

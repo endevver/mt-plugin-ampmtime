@@ -10,4 +10,4 @@ doc_link: http://www.movabletips.com
 callbacks:
   MT::App::CMS::template_source.date-picker:
     handler: $AMPMTime::AMPMTime::Transformer::hdlr_template_source_date_picker
-    priority : 11
+    priority: 11
