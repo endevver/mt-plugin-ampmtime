@@ -4,14 +4,26 @@ use strict;
 sub hdlr_template_source_date_picker {
     my ($cb, $app, $tmpl_ref) = @_;
     my $old;
-    if ($MT::VERSION =~ /^4/){;
-    	    $old = <<'EOF';
-            <input class="entry-time" name="t_<mt:var name="field_name">" tabindex="11" value="<$mt:var name="time" escape="html"$>" />
+
+    if ($app->version_number =~ /^4/){
+        $old = <<'EOF';
+        <input class="entry-time" name="t_<mt:var name="field_name">" tabindex="11" value="<$mt:var name="time" escape="html"$>" />
 EOF
     }
+    # MT version 5.0 through 6.1.
+    elsif (
+        $app->version_number =~ /^5/
+        || $app->version_number =~ /^6.0/
+        || $app->version_number =~ /^6.1/
+    ) {
+        $old = <<'EOF';
+        <input type="text" class="entry-time" name="t_<mt:var name="field_name" escape="html">" value="<$mt:var name="time" escape="html"$>" />
+EOF
+    }
+    # MT 6.2+
     else {
-    	    $old = <<'EOF';
-            <input type="text" class="entry-time" name="t_<mt:var name="field_name" escape="html">" value="<$mt:var name="time" escape="html"$>" />
+        $old = <<'EOF';
+        <input type="text" class="entry-time" name="t_<mt:var name="field_name" escape="html">" value="<$mt:var name="time" escape="html"$>" placeholder="HH:mm:ss" />
 EOF
 }
 
